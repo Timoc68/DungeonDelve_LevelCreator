@@ -1,0 +1,10 @@
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelCreator\bin\Debug\DungeonDelve_LevelCreator.exe.config
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelCreator\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelCreator\bin\Debug\DungeonDelve_LevelCreator.exe
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelCreator\bin\Debug\DungeonDelve_LevelCreator.pdb
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelCreator\obj\Debug\DungeonDelve_LevelCreator.exe
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelCreator\obj\Debug\DungeonDelve_LevelCreator.pdb
+C:\Dev\DungeonDelve_LevelCreator\Executables\DungeonDelve_LevelCreator.exe.config
+C:\Dev\DungeonDelve_LevelCreator\Executables\DungeonDelve_LevelCreator.exe
+C:\Dev\DungeonDelve_LevelCreator\Executables\DungeonDelve_LevelCreator.pdb
+C:\Dev\DungeonDelve_LevelCreator\Executables\DungeonLevelParams.xml

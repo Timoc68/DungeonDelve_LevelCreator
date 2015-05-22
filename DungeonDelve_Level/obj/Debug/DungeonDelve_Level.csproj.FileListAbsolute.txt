@@ -1,0 +1,7 @@
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_Level\bin\Debug\DungeonDelve_Level.dll
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_Level\bin\Debug\DungeonDelve_Level.pdb
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_Level\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_Level\obj\Debug\DungeonDelve_Level.dll
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_Level\obj\Debug\DungeonDelve_Level.pdb
+C:\Dev\DungeonDelve_LevelCreator\Executables\DungeonDelve_Level.dll
+C:\Dev\DungeonDelve_LevelCreator\Executables\DungeonDelve_Level.pdb

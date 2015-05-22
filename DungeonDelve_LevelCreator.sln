@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelve_LevelCreator", "DungeonDelve_LevelCreator\DungeonDelve_LevelCreator.csproj", "{FCC25628-10A0-400F-9D1F-EF2345B2E88E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelve_LevelChecker", "DungeonDelve_LevelChecker\DungeonDelve_LevelChecker.csproj", "{89DE6BA8-C1B3-4106-862E-77CFCFB2AAFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DungeonDelve_Level", "DungeonDelve_Level\DungeonDelve_Level.csproj", "{670E5AB9-D2B7-40DA-BF5A-FE394B5A386D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCC25628-10A0-400F-9D1F-EF2345B2E88E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC25628-10A0-400F-9D1F-EF2345B2E88E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC25628-10A0-400F-9D1F-EF2345B2E88E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC25628-10A0-400F-9D1F-EF2345B2E88E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89DE6BA8-C1B3-4106-862E-77CFCFB2AAFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89DE6BA8-C1B3-4106-862E-77CFCFB2AAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89DE6BA8-C1B3-4106-862E-77CFCFB2AAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89DE6BA8-C1B3-4106-862E-77CFCFB2AAFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{670E5AB9-D2B7-40DA-BF5A-FE394B5A386D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{670E5AB9-D2B7-40DA-BF5A-FE394B5A386D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{670E5AB9-D2B7-40DA-BF5A-FE394B5A386D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{670E5AB9-D2B7-40DA-BF5A-FE394B5A386D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,8 @@
+C:\Dev\DungeonDelve_LevelCreator\Executables\DungeonDelve_LevelChecker.exe
+C:\Dev\DungeonDelve_LevelCreator\Executables\DungeonDelve_LevelChecker.pdb
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelChecker\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelChecker\obj\Debug\DungeonDelve_LevelChecker.LevelChecker.resources
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelChecker\obj\Debug\DungeonDelve_LevelChecker.Properties.Resources.resources
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelChecker\obj\Debug\DungeonDelve_LevelChecker.csproj.GenerateResource.Cache
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelChecker\obj\Debug\DungeonDelve_LevelChecker.exe
+C:\Dev\DungeonDelve_LevelCreator\DungeonDelve_LevelChecker\obj\Debug\DungeonDelve_LevelChecker.pdb

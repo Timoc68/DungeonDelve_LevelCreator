@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DungeonLevelParams level="1" name="Dark Warehouse" >
+  <Blocks minX="20" minY="20" maxX="100" maxY="100" />
+  <Rooms minX="2" minY="2" maxX="5" maxY="5" />
+  <Exits numTownPortals="1" />
+  <Corridors>
+    <short length="4" />
+    <medium length="8" />
+    <long length="12" />
+  </Corridors>
+</DungeonLevelParams>
