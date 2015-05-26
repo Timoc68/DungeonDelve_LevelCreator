@@ -154,6 +154,35 @@ namespace DungeonDelve_LevelCreator
             return (room);
         }
 
+        private DungeonRoom CheckRoom(LevelMap map, DungeonRoom room)
+        {
+            bool bFinished = false;
+            DungeonRoom newRoom = null;
+            MapBlock curr = null;
+            int iSizeX = room.SizeX;
+            int iSizeY = room.SizeY;
+
+            do
+            {
+                if (room.RoomEntDir == Directions.North)
+                {
+                    if (room.EntranceY < map.SizeY - 2)
+                        curr = map[room.EntranceX, room.EntranceY + 2];
+                }
+                else if (room.RoomEntDir == Directions.South)
+                {
+                    if (room.EntranceY > 1)
+                        curr = map[room.EntranceX, room.EntranceY - 2];
+                }
+                else if (room.RoomEntDir == Directions.East)
+                    curr = map[room.EntranceX + 2, room.EntranceY];
+                else
+                    curr = map[room.EntranceX - 2, room.EntranceY];
+
+                bFinished = bFinished || (curr != null);
+            } while (!bFinished);
+        }
+
         private int GenerateCorridor(LevelMap map, MapBlock curr, Directions corridorDirection, int iLength, ExitTypes exitType)
         {
             int iNumNewExits = 0;
