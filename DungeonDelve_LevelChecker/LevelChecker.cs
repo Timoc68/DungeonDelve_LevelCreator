@@ -47,22 +47,30 @@ namespace DungeonDelve_LevelChecker
                 lblLevelNo.Text = levelMap.LevelNo.ToString();
                 lblLevelSize.Text = levelMap.SizeX.ToString() + " x " + levelMap.SizeY.ToString();
                 lblLevelEntrance.Text = levelMap.StartX.ToString() + " , " + levelMap.StartY.ToString();
+                txtLevelSeed.Text = levelMap.MapSeed.ToString();
 
                 picLevel.Refresh();
 
+                File.Delete("Level_errors.txt");
                 int iErrors = 0;
                 foreach (MapBlock block in levelMap.MapBlocks)
                 {
+                    bool bError = false;
                     if (!block.LevelEntrance && !block.Unused)
                     {
                         if ((block.Exits.Count == 1) && (block.BlockType != BlockTypes.Deadend))
-                            iErrors++;
+                            bError = true;
                         if ((block.Exits.Count == 2) && (block.BlockType != BlockTypes.Corridor))
-                            iErrors++;
+                            bError = true;
                         if ((block.Exits.Count == 3) && (block.BlockType != BlockTypes.TIntersection))
-                            iErrors++;
+                            bError = true;
                         if ((block.Exits.Count == 4) && (block.BlockType != BlockTypes.Crossroad))
+                            bError = true;
+                        if (bError)
+                        {
                             iErrors++;
+                            File.AppendAllText("Level_errors.txt", block.X.ToString() + "," + block.Y.ToString() + Environment.NewLine);
+                        }
                     }
                 }
                 lblLevelErrors.Text = iErrors.ToString();

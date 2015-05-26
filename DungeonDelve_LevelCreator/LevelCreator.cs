@@ -116,17 +116,42 @@ namespace DungeonDelve_LevelCreator
             {
                 ExitToProcess exitToProcess = (ExitToProcess)stackExitsToProcess.Pop();
                 MapBlock block = exitToProcess.Block;
-                BlockExit exit = exitToProcess.Exit;
-                int iCorrLength = GetCorridorLength(map, map[block.X, block.Y], exit.Direction);
-                if (iCorrLength > 0)
+                Directions dir = exitToProcess.ExitDir;
+                // roll for corridor or room
+                int iCorrRoom = levelRandomiser.Next(4);
+                if (iCorrRoom == 0)
                 {
-                    ExitTypes exitType = GetExitType(iCorrLength);
-                    map[block.X, block.Y][exit.Direction].ExitType = exitType;
-                    GenerateCorridor(map, map[block.X, block.Y], exit.Direction, iCorrLength, exitType);
+                    // generate new room
+                    int iRoomSizeX = levelRandomiser.Next(2,5);
+                    int iRoomSizeY = levelRandomiser.Next(2,5);
+                    DungeonRoom room = new DungeonRoom(new MapCoords(block.X, block.Y), dir, new MapCoords(iRoomSizeX, iRoomSizeY));
+                    // room = GenerateRoom(map, room);
                 }
                 else
-                    map[block.X, block.Y].Exits.Remove(map[block.X, block.Y][exit.Direction]);
+                {
+                    // generate new corridor
+                    int iCorrLength = GetCorridorLength(map, map[block.X, block.Y], dir);
+                    if (iCorrLength > 0)
+                    {
+                        ExitTypes exitType = GetCorrExitType(iCorrLength);
+                        AddExitToBlock(map[block.X, block.Y], dir, exitType);
+                        iCorrLength = GenerateCorridor(map, map[block.X, block.Y], dir, iCorrLength, exitType);
+                        if (iCorrLength == 0)
+                            RemoveExitFromBlock(map[block.X, block.Y], dir);
+                    }
+                }
             }
+        }
+
+        private DungeonRoom GenerateRoom(LevelMap map, DungeonRoom room)
+        {
+            Directions dir = room.RoomEntDir;
+            int iSizeX = room.SizeX;
+            int iSizeY = room.SizeY;
+            
+
+
+            return (room);
         }
 
         private int GenerateCorridor(LevelMap map, MapBlock curr, Directions corridorDirection, int iLength, ExitTypes exitType)
@@ -175,11 +200,7 @@ namespace DungeonDelve_LevelCreator
                     // adjust next block when two corridors intersect
                     AddExitToBlock(curr, corridorDirection, exitType);
                     AddExitToBlock(next, DirectionOpposite(corridorDirection), exitType);
-                    next.BlockType = GetBlockType(next);
                 }
-
-                // set block type
-                curr.BlockType = GetBlockType(curr);
 
                 // check for new branch off corridor
                 if (exitType != ExitTypes.ShortCorridor)
@@ -223,29 +244,49 @@ namespace DungeonDelve_LevelCreator
             {
                 BlockExit exit = new BlockExit(dir, type);
                 block.Exits.Add(exit);
+                block.BlockType = GetBlockType(block);
             }
 
             return (bAddExit);
         }
 
+        private void RemoveExitFromBlock(MapBlock block, Directions dir)
+        {
+            foreach (BlockExit exit in block.Exits)
+            {
+                if (exit.Direction == dir)
+                {
+                    block.Exits.Remove(block[exit.Direction]);
+                    block.BlockType = GetBlockType(block);
+                    break;
+                }
+            }
+        }
+
         private BlockTypes GetBlockType(MapBlock block)
         {
             BlockTypes blockType = BlockTypes.Unused;
-            int iNumExits = NumNSEWExits(block);
-            switch (iNumExits)
+
+            if ((block.X == Map.StartX) && (block.Y == Map.StartY))
+                blockType = BlockTypes.Entrance;
+            else
             {
-                case 1:
-                    blockType = BlockTypes.Deadend;
-                    break;
-                case 2:
-                    blockType = BlockTypes.Corridor;
-                    break;
-                case 3:
-                    blockType = BlockTypes.TIntersection;
-                    break;
-                case 4:
-                    blockType = BlockTypes.Crossroad;
-                    break;
+                int iNumExits = NumNSEWExits(block);
+                switch (iNumExits)
+                {
+                    case 1:
+                        blockType = BlockTypes.Deadend;
+                        break;
+                    case 2:
+                        blockType = BlockTypes.Corridor;
+                        break;
+                    case 3:
+                        blockType = BlockTypes.TIntersection;
+                        break;
+                    case 4:
+                        blockType = BlockTypes.Crossroad;
+                        break;
+                }
             }
 
             return (blockType);
@@ -253,20 +294,13 @@ namespace DungeonDelve_LevelCreator
 
         private int GetCorridorLength(LevelMap map, MapBlock curr, Directions dir)
         {
-            int iLength = levelRandomiser.Next(6);
-            if (iLength < 2)
-                iLength = levelRandomiser.Next(1, ShortCorrLength);
-            else if (iLength < 5)
-                iLength = levelRandomiser.Next(ShortCorrLength + 1, MediumCorrLength);
-            else
-                iLength = levelRandomiser.Next(MediumCorrLength + 1, LongCorrLength);
-            iLength = levelRandomiser.Next(1, LongCorrLength); //// **** ////
+            int iLength = levelRandomiser.Next(1, LongCorrLength);
             iLength = CheckCorridor(map, curr, dir, iLength);
 
             return (iLength);
         }
 
-        private ExitTypes GetExitType(int iLength)
+        private ExitTypes GetCorrExitType(int iLength)
         {
             ExitTypes exitType;
             if (iLength < ShortCorrLength)
@@ -342,13 +376,6 @@ namespace DungeonDelve_LevelCreator
                             bValidBlock = false;
                     }
                     
-                    /*
-                    if ((iX + (iLen + 1) * iDX < map.SizeX) && (iY + (iLen + 1) * iDY < map.SizeY))
-                        if ((iX + (iLen + 1) * iDX >= 0) && (iY + (iLen + 1) * iDY >= 0))
-                            if (map[iX + iLen * iDX, iY + iLen * iDY].Unused)
-                                bValidBlock = true;
-                    */
-
                     if(bValidBlock)
                         iLen++;
                 } while (bValidBlock && (iLen <= iTargetLength));
@@ -445,7 +472,6 @@ namespace DungeonDelve_LevelCreator
                         // exit already exists, re-roll
                         bValidExit = false;
                         i--;
-                        // iNumNewExits--;
                     }
                     else
                     {
@@ -466,15 +492,10 @@ namespace DungeonDelve_LevelCreator
                 }
                 if (bValidExit)
                 {
-                    block.Exits.Add(new BlockExit(newExitDir));
-                    ExitToProcess exitToProcess = new ExitToProcess(block, block.Exits[block.Exits.Count-1]);
+                    ExitToProcess exitToProcess = new ExitToProcess(block, newExitDir);
                     stackExitsToProcess.Push(exitToProcess);
                 }
             }
-
-            // set block type
-            if (block.BlockType != BlockTypes.Entrance)
-                block.BlockType = GetBlockType(block);
 
             return (iNumNewExits);
         }
@@ -501,8 +522,7 @@ namespace DungeonDelve_LevelCreator
             int iStartX = levelRandomiser.Next(1,levelMap.SizeX-1);
             int iStartY = levelRandomiser.Next(1,levelMap.SizeY-1);
             levelMap.StartBlock = new MapCoords(iStartX, iStartY);
-            levelMap[levelMap.StartX, levelMap.StartY].BlockType = BlockTypes.Entrance;
-            levelMap[levelMap.StartX, levelMap.StartY].Exits.Add(new BlockExit(Directions.Up));
+            AddExitToBlock(levelMap[levelMap.StartX, levelMap.StartY], Directions.Up, ExitTypes.PrevLevel);
             levelMap[levelMap.StartX, levelMap.StartY][Directions.Up].ExitType = ExitTypes.PrevLevel;
 
             levelLog.LogInfo("Level entry located at block " + levelMap.StartX.ToString() + "," + levelMap.StartY.ToString() + ".");

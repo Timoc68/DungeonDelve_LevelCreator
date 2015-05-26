@@ -138,7 +138,7 @@ namespace DungeonDelve_Level
     public class ExitToProcess
     {
         private MapBlock mapBlock;
-        private BlockExit blockExit;
+        private Directions exitDir;
 
         public MapBlock Block
         {
@@ -152,22 +152,22 @@ namespace DungeonDelve_Level
             }
         }
 
-        public BlockExit Exit
+        public Directions ExitDir
         {
             get
             {
-                return (blockExit);
+                return (exitDir);
             }
             set
             {
-                blockExit = value;
+                exitDir = value;
             }
         }
 
-        public ExitToProcess(MapBlock block, BlockExit exit)
+        public ExitToProcess(MapBlock block, Directions dir)
         {
             Block = block;
-            Exit = exit;
+            exitDir = dir;
         }
     }
 
@@ -258,6 +258,60 @@ namespace DungeonDelve_Level
         {
             iX = iValX;
             iY = iValY;
+        }
+    }
+
+    public class DungeonRoom
+    {
+        MapCoords roomEntrance;
+        MapCoords roomSize;
+        Directions roomEntDir;
+
+        public int SizeX
+        {
+            get
+            {
+                return (roomSize.X);
+            }
+        }
+
+        public int SizeY
+        {
+            get
+            {
+                return (roomSize.Y);
+            }
+        }
+
+        public int EntranceX
+        {
+            get
+            {
+                return (roomEntrance.X);
+            }
+        }
+
+        public int EntranceY
+        {
+            get
+            {
+                return (roomEntrance.Y);
+            }
+        }
+
+        public Directions RoomEntDir
+        {
+            get
+            {
+                return (roomEntDir);
+            }
+        }
+
+        public DungeonRoom(MapCoords ent, Directions entDir, MapCoords size)
+        {
+            roomEntrance = new MapCoords(ent.X, ent.Y);
+            roomEntDir = entDir;
+            roomSize = new MapCoords(size.X, size.Y);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DungeonLevelParams level="1" name="Dark Warehouse" >
   <MapSeed value=""/>
-  <Blocks minX="20" minY="20" maxX="100" maxY="100" />
+  <Blocks minX="25" minY="25" maxX="75" maxY="75" />
   <!--Blocks minX="10" minY="10" maxX="25" maxY="25" /-->
   <Rooms minX="2" minY="2" maxX="5" maxY="5" />
   <Exits numTownPortals="1" />

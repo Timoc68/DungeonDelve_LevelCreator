@@ -43,6 +43,8 @@
             this.lblEntrance = new System.Windows.Forms.Label();
             this.lblLevelErrors = new System.Windows.Forms.Label();
             this.lblErrors = new System.Windows.Forms.Label();
+            this.lblSeed = new System.Windows.Forms.Label();
+            this.txtLevelSeed = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picLevel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,7 +169,7 @@
             // lblLevelErrors
             // 
             this.lblLevelErrors.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLevelErrors.Location = new System.Drawing.Point(408, 91);
+            this.lblLevelErrors.Location = new System.Drawing.Point(404, 91);
             this.lblLevelErrors.Name = "lblLevelErrors";
             this.lblLevelErrors.Size = new System.Drawing.Size(43, 13);
             this.lblLevelErrors.TabIndex = 13;
@@ -175,11 +177,28 @@
             // lblErrors
             // 
             this.lblErrors.AutoSize = true;
-            this.lblErrors.Location = new System.Drawing.Point(325, 91);
+            this.lblErrors.Location = new System.Drawing.Point(321, 91);
             this.lblErrors.Name = "lblErrors";
             this.lblErrors.Size = new System.Drawing.Size(77, 13);
             this.lblErrors.TabIndex = 12;
             this.lblErrors.Text = "Errors in Level:";
+            // 
+            // lblSeed
+            // 
+            this.lblSeed.AutoSize = true;
+            this.lblSeed.Location = new System.Drawing.Point(339, 68);
+            this.lblSeed.Name = "lblSeed";
+            this.lblSeed.Size = new System.Drawing.Size(59, 13);
+            this.lblSeed.TabIndex = 14;
+            this.lblSeed.Text = "Map Seed:";
+            // 
+            // txtLevelSeed
+            // 
+            this.txtLevelSeed.Location = new System.Drawing.Point(407, 65);
+            this.txtLevelSeed.Name = "txtLevelSeed";
+            this.txtLevelSeed.ReadOnly = true;
+            this.txtLevelSeed.Size = new System.Drawing.Size(44, 20);
+            this.txtLevelSeed.TabIndex = 15;
             // 
             // LevelChecker
             // 
@@ -188,6 +207,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(527, 674);
+            this.Controls.Add(this.txtLevelSeed);
+            this.Controls.Add(this.lblSeed);
             this.Controls.Add(this.lblLevelErrors);
             this.Controls.Add(this.lblErrors);
             this.Controls.Add(this.lblLevelEntrance);
@@ -230,6 +251,8 @@
         private System.Windows.Forms.Label lblEntrance;
         private System.Windows.Forms.Label lblLevelErrors;
         private System.Windows.Forms.Label lblErrors;
+        private System.Windows.Forms.Label lblSeed;
+        private System.Windows.Forms.TextBox txtLevelSeed;
     }
 }
 
